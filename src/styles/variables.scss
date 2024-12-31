@@ -1,0 +1,23 @@
+/* Color Palette */
+$primary-color: #1976d2;
+$secondary-color: #dc004e;
+$background-default: #f5f5f5;
+$text-primary: #000000;
+$text-secondary: #6d6d6d;
+
+/* Typography */
+$font-family: 'Roboto', Arial, sans-serif;
+
+/* Spacing */
+$base-spacing: 8px;
+
+/* CSS Variables */
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --background-default: #{$background-default};
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --font-family: #{$font-family};
+  --base-spacing: #{$base-spacing};
+}
