@@ -4,38 +4,17 @@ import { Link } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => (
-  <AppBar
-    position="static"
-    sx={{
-      backgroundColor: 'var(--primary-color)', // Use SCSS variable
-      color: 'var(--text-primary)', // Use SCSS variable
-      width: '100%',
-    }}
-  >
-    <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', px: 'var(--base-spacing)' }}>
+  <AppBar position="static" sx={{ backgroundColor: 'var(--primary-color)', color: 'var(--text-color)' }}>
+    <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
       <Box>
-        <Button
-          sx={{
-            color: 'var(--text-primary)', // Use text color from SCSS variable
-            fontWeight: 600,
-          }}
-          component={Link}
-          to="/"
-        >
+        <Button component={Link} to="/" sx={{ color: 'var(--text-color)', fontWeight: 600 }}>
           Home
         </Button>
-        <Button
-          sx={{
-            color: 'var(--text-primary)', // Use text color from SCSS variable
-            fontWeight: 600,
-          }}
-          component={Link}
-          to="/volume"
-        >
+        <Button component={Link} to="/volume" sx={{ color: 'var(--text-color)', fontWeight: 600 }}>
           Volume
         </Button>
       </Box>
-      <ThemeToggle /> {/* Add the toggle button here */}
+      <ThemeToggle />
     </Toolbar>
   </AppBar>
 );

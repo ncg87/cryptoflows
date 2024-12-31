@@ -1,19 +1,20 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { darkTheme } from './theme';
+import { ThemeProvider } from './context/ThemeContext';
 import './styles/global.css';
 import './styles/variables.scss';
 
 const container = document.getElementById('root');
-const root = createRoot(container); // Create the root
+const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <App />
+    <ThemeProvider>
+      <Router>
+        <App />
+      </Router>
     </ThemeProvider>
   </React.StrictMode>
 );

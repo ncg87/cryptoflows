@@ -1,23 +1,31 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Container } from '@mui/material';
+import { Box } from '@mui/material';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import VolumePage from './pages/VolumePage';
+import AppRoutes from './router/AppRoutes';
 
 const App = () => (
-  <Router>
+  <Box
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh',
+      minWidth: '100vw',
+    }}
+  >
     <Navbar />
-    <Container>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/volume" element={<VolumePage />} />
-      </Routes>
-    </Container>
+    <Box
+      component="main"
+      sx={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <AppRoutes />
+    </Box>
     <Footer />
-  </Router>
+  </Box>
 );
 
 export default App;
-
