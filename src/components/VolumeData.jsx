@@ -3,6 +3,7 @@ import { fetchVolume } from '../utils/apiClient';
 
 const VolumeData = () => {
   const [volumeData, setVolumeData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -15,21 +16,45 @@ const VolumeData = () => {
         setVolumeData(data);
       } catch (err) {
         setError('Failed to fetch volume data.');
-        console.error(err);
+        console.error(err.message);
+      } finally {
+        setLoading(false); // Stop loading
       }
     };
 
     getVolumeData();
   }, []);
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p style={{ color: 'red' }}>{error}</p>;
+  }
+
   return (
     <div>
       <h1>Volume Data (Last 24 Hours)</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
       {volumeData ? (
-        <pre>{JSON.stringify(volumeData, null, 2)}</pre>
+        <table>
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Volume</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(volumeData).map(([token, volume]) => (
+              <tr key={token}>
+                <td>{token}</td>
+                <td>{volume}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : (
-        <p>Loading...</p>
+        <p>No data available.</p>
       )}
     </div>
   );
