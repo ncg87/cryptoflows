@@ -1,8 +1,18 @@
-# React + Vite
+# CryptoFlows.ai
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CryptoFlows.ai is a responsive web application designed to track cryptocurrency volumes and transactions across various decentralized exchanges (DEXs). Built with modern web technologies like React and Material-UI, it offers a dynamic and consistent user experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Live Cryptocurrency Tracking**: Monitor trading volumes and transactions in real-time.
+- **Responsive Design**: Scales beautifully on devices of all sizes.
+- **Dynamic Theming**: Customizable styling using Material-UI and SCSS variables.
+- **Modular Components**: Clean and maintainable architecture with reusable components.
+
+## Tech Stack
+
+- **Frontend**: React (with React Router for navigation)
+- **Styling**: Material-UI, SCSS, and global CSS
+- **State Management**: React hooks (useState, useEffect)
+- **Build Tools**: Vite for fast builds and hot module replacement
+
