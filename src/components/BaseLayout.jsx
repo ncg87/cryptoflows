@@ -1,6 +1,4 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
 import { Box } from '@mui/material';
 
 const BaseLayout = ({ children }) => (
@@ -8,7 +6,7 @@ const BaseLayout = ({ children }) => (
     sx={{
       display: 'flex',
       flexDirection: 'column',
-      minHeight: '100vh',
+      minHeight: '100%',
       backgroundColor: 'var(--background-default)', // Background from SCSS variables
       color: 'var(--text-primary)', // Text color from SCSS variables
     }}

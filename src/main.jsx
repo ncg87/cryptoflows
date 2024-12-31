@@ -1,17 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import theme from './theme';
-import './styles/global.css'; // Global styles
-import './styles/variables.scss'; // SCSS variables
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { darkTheme } from './theme';
+import './styles/global.css';
+import './styles/variables.scss';
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container); // Create the root
+
+root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <App />
     </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );

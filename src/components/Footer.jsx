@@ -5,13 +5,12 @@ const Footer = () => (
   <Box
     component="footer"
     sx={{
-      width: '100vw',
-      backgroundColor: 'var(--background-default)', // Use SCSS variable for background
-      color: 'var(--text-secondary)', // Use SCSS variable for text color
-      textAlign: 'center',
-      py: 'var(--base-spacing)', // Use SCSS variable for spacing
-      mt: 'auto', // Ensure the footer is pushed to the bottom
-      borderTop: '1px solid var(--text-secondary)', // Optional: subtle border
+        width: '100%',
+        textAlign: 'center',
+        py: 2,
+        mt: 'auto', // Push footer to the bottom
+        borderTop: '1px solid', // Add a subtle border
+        borderColor: 'var(--text-secondary)', // Use theme's text color for the border
     }}
   >
     <Typography variant="body2">

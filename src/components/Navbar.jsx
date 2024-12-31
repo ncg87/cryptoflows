@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => (
   <AppBar
@@ -8,7 +9,7 @@ const Navbar = () => (
     sx={{
       backgroundColor: 'var(--primary-color)', // Use SCSS variable
       color: 'var(--text-primary)', // Use SCSS variable
-      width: '100vw',
+      width: '100%',
     }}
   >
     <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', px: 'var(--base-spacing)' }}>
@@ -16,7 +17,7 @@ const Navbar = () => (
         <Button
           sx={{
             color: 'var(--text-primary)', // Use text color from SCSS variable
-            fontWeight: 600, // Add a consistent font weight
+            fontWeight: 600,
           }}
           component={Link}
           to="/"
@@ -34,6 +35,7 @@ const Navbar = () => (
           Volume
         </Button>
       </Box>
+      <ThemeToggle /> {/* Add the toggle button here */}
     </Toolbar>
   </AppBar>
 );

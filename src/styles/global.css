@@ -1,31 +1,101 @@
 /* Reset and base styles */
-body, html {
+html, body, #root {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    min-height: 100vh;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
     font-family: 'Roboto', Arial, sans-serif;
-    background-color: var(--background-default);
-    color: var(--text-primary);
+    background-color: var(--background-color); /* Background color from SCSS variables */
+    color: var(--text-color); /* Text color from SCSS variables */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
   }
-  
-  /* Reusable classes */
-  .container {
+
+  #root {
+    
+    display: flex;
+    flex-direction: column;
+  }
+
+/* Reusable utility classes */
+.container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 16px;
-  }
-  
-  .text-center {
+    padding: var(--base-spacing);
+}
+
+.text-center {
     text-align: center;
-  }
-  
-  .flex {
+}
+
+.flex {
     display: flex;
-  }
-  
-  .flex-center {
+}
+
+.flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
+}
+
+/* Root element adjustments */
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Logo animations and styles */
+.logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 2em var(--primary-color));
+}
+
+.logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa); /* Specific React branding color */
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+/* Buttons */
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.25s;
+}
+
+button:hover {
+    border-color: var(--text-color);
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}

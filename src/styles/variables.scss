@@ -12,12 +12,19 @@ $font-family: 'Roboto', Arial, sans-serif;
 $base-spacing: 8px;
 
 /* CSS Variables */
+/* variables.scss */
+
+/* Dark Theme (Default) */
 :root {
-  --primary-color: #{$primary-color};
-  --secondary-color: #{$secondary-color};
-  --background-default: #{$background-default};
-  --text-primary: #{$text-primary};
-  --text-secondary: #{$text-secondary};
-  --font-family: #{$font-family};
-  --base-spacing: #{$base-spacing};
-}
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --primary-color: #1976d2;
+  }
+  
+  /* Light Theme */
+  [data-theme="light"] {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --primary-color: #1976d2;
+  }
+  
