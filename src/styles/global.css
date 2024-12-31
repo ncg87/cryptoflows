@@ -12,4 +12,59 @@ html, body {
     display: flex;
     flex-direction: column;
   }
+
+
+ /* General list styles */
+.general-list {
+    width: 100%;
+    border: 2px solid var(--border-color); /* Border around the entire list */
+    border-radius: 8px; /* Rounded edges */
+    background-color: var(--list-background-color);
+    overflow: hidden;
+  }
+  
+  .general-list-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--header-background-color);
+    font-weight: bold;
+    border-bottom: 2px solid var(--border-color); /* Border between header and items */
+  }
+  
+  .general-list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color); /* Border between items */
+    transition: background-color 0.3s;
+  }
+  
+  .general-list-item:hover {
+    background-color: var(--hover-background-color);
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    cursor: pointer;
+  }
+  
+  .pagination button.active {
+    font-weight: bold;
+    background-color: var(--button-active-background-color);
+  }
+  
+  .pagination button:hover {
+    background-color: var(--button-hover-background-color);
+  }
   

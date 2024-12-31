@@ -13,7 +13,7 @@ const apiClient = axios.create({
 });
 
 // Function to fetch volume data
-export const fetchVolume = async (startTime, endTime, dexId = null) => {
+export const fetchVolume = async (startTime, endTime, dexId = 'uniswap_v3') => {
   try {
     const params = { start_time: startTime, end_time: endTime };
     if (dexId) params.dex_id = dexId;
