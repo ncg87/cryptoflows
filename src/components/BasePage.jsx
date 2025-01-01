@@ -5,7 +5,8 @@ const BasePage = ({ children, sx = {} }) => (
   <Box
     component="main"
     sx={{
-      flex: 1,
+      boxSizing: 'border-box', // Include padding and border in the element's total width and height
+      flex: 1, // Ensure the main content takes up the full height of the container
       display: 'flex',
       flexDirection: 'column',
       padding: '2rem',

@@ -5,6 +5,7 @@ html, body {
     height: 100%;
     background-color: var(--background-color);
     color: var(--text-color);
+    box-sizing: border-box;
   }
   
   #root {
@@ -15,9 +16,10 @@ html, body {
 
 
  /* General list styles */
+/* General list styles */
 .general-list {
     width: 100%;
-    border: 2px solid var(--border-color); /* Border around the entire list */
+    border: 2px solid var(--border-color);
     border-radius: 8px; /* Rounded edges */
     background-color: var(--list-background-color);
     overflow: hidden;
@@ -28,21 +30,32 @@ html, body {
     justify-content: space-between;
     background-color: var(--header-background-color);
     font-weight: bold;
-    border-bottom: 2px solid var(--border-color); /* Border between header and items */
+    border-bottom: 2px solid var(--border-color);
   }
   
   .general-list-item {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid var(--border-color); /* Border between items */
-    transition: background-color 0.3s;
+    border-bottom: 1px solid var(--border-color);
   }
   
   .general-list-item:hover {
     background-color: var(--hover-background-color);
   }
   
+  .clickable-token {
+    color: var(--link-color);
+    text-decoration: none; /* Prevent underline */
+    cursor: pointer;
+    font-family: var(--font-family); 
+  }
+  
+  .clickable-token:hover {
+    text-decoration: underline; /* Add underline only for token name on hover */
+  }
+  
+  /* Pagination styles */
   .pagination {
     display: flex;
     justify-content: center;
@@ -67,4 +80,5 @@ html, body {
   .pagination button:hover {
     background-color: var(--button-hover-background-color);
   }
+  
   

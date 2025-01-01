@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import GeneralList from "./GeneralList";
 import { fetchVolume } from "../utils/apiClient";
+import { useNavigate } from "react-router-dom";
 
 const VolumeData = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getVolumeData = async () => {
@@ -27,6 +29,10 @@ const VolumeData = () => {
     getVolumeData();
   }, []);
 
+  const handleTokenClick = (token) => {
+    navigate(`/crypto/${token}`); // Navigate to crypto details page
+  };
+
   if (loading) return <p>Loading...</p>;
 
   return (
@@ -37,6 +43,7 @@ const VolumeData = () => {
         { key: "volume", label: "Volume" },
       ]}
       pageSize={5}
+      onTokenClick={handleTokenClick}
     />
   );
 };

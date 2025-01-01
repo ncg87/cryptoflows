@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, Typography } from "@mui/material";
 
-const GeneralList = ({ items, headers, pageSize }) => {
+const GeneralList = ({
+    items,
+    headers,
+    pageSize = 10,
+    onTokenClick = null,
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortField, setSortField] = useState(headers[0].key); // Default to the first header key
+  const [sortField, setSortField] = useState(headers[1].key); // Default to the first header key
   const [sortOrder, setSortOrder] = useState("desc"); // Default to descending
 
   const totalPages = Math.ceil(items.length / pageSize);
@@ -64,9 +69,24 @@ const GeneralList = ({ items, headers, pageSize }) => {
       {paginatedItems.map((item, index) => (
         <Box key={index} className="general-list-item">
           {headers.map((header) => (
-            <Typography key={header.key} style={{ flex: 1 }}>
-              {item[header.key]}
-            </Typography>
+            <Box
+              key={header.key}
+              style={{
+                flex: 1,
+                display: header.key === "token" ? "inline-block" : "block",
+              }}
+            >
+              {header.key === "token" ? (
+                <span
+                  className="clickable-token"
+                  onClick={() => onTokenClick && onTokenClick(item[header.key])}
+                >
+                  {item[header.key]}
+                </span>
+              ) : (
+                <Typography>{item[header.key]}</Typography>
+              )}
+            </Box>
           ))}
         </Box>
       ))}
@@ -102,10 +122,8 @@ GeneralList.propTypes = {
     })
   ).isRequired,
   pageSize: PropTypes.number,
+  onTokenClick: PropTypes.func, // Callback for token name click
 };
 
-GeneralList.defaultProps = {
-  pageSize: 10,
-};
 
 export default GeneralList;
