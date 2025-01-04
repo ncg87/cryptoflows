@@ -26,4 +26,17 @@ export const fetchVolume = async (startTime, endTime, dexId = 'uniswap_v3') => {
   }
 };
 
+// Function to fetch data for a single symbol
+export const fetchTokenData = async (symbol) => {
+  try {
+    const params = { symbol };
+
+    const response = await apiClient.get('/tokens', { params });
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching data for symbol ${symbol}:`, error.message);
+    throw error;
+  }
+};
+
 export default apiClient;

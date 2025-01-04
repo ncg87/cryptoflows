@@ -9,8 +9,8 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/volume" element={<VolumePage />} />
-    <Route path="/crypto/:token" element={<TokenPage />} />
-    <Route path="/dex/:dex" element={<DEXPage />} />
+    <Route path="/tokens/:token" element={<TokenPage />} />
+    <Route path="/dexs/:dex" element={<DEXPage />} />
   </Routes>
 );
 

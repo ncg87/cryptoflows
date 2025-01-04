@@ -15,9 +15,10 @@ const VolumeData = () => {
         const oneDayAgo = now - 24 * 60 * 60;
         const volumeData = await fetchVolume(oneDayAgo, now);
         setData(
-          Object.entries(volumeData).map(([name, volume]) => ({
-            token: name,
-            volume,
+          volumeData.map((token) => ({
+            id: token.id,
+            displayName: `${token.name} (${token.symbol})`,
+            volume: token.volume,
           }))
         );
       } catch (error) {
@@ -29,8 +30,8 @@ const VolumeData = () => {
     getVolumeData();
   }, []);
 
-  const handleTokenClick = (token) => {
-    navigate(`/crypto/${token}`); // Navigate to crypto details page
+  const handleTokenClick = (tokenId) => {
+    navigate(`/tokens/${tokenId}`);
   };
 
   if (loading) return <p>Loading...</p>;
@@ -39,11 +40,11 @@ const VolumeData = () => {
     <GeneralList
       items={data}
       headers={[
-        { key: "token", label: "Token" },
-        { key: "volume", label: "Volume" },
+        { key: "displayName", label: "Token" },
+        { key: "volume", label: "24 Hour Volume" },
       ]}
       pageSize={5}
-      onTokenClick={handleTokenClick}
+      onTokenClick={(item) => handleTokenClick(item.id)}
     />
   );
 };

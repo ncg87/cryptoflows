@@ -1,33 +1,57 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchTokenData } from '../utils/apiClient';
 
 const TokenPage = () => {
-  const { token } = useParams();
-  const [cryptoData, setCryptoData] = useState(null);
+  const { tokenId } = useParams(); // Assuming you are using react-router and tokenId is a URL param
+  const [tokenData, setTokenData] = useState(null); // Token data state
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
-    const fetchCryptoData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(`/api/crypto/${token}`); // Example endpoint
-        const data = await response.json();
-        setCryptoData(data);
-      } catch (error) {
-        console.error("Error fetching crypto details:", error);
+        setLoading(true);
+        setError(null);
+
+        // Fetch token data using the API client function
+        const response = await fetchTokenData(tokenId);
+
+        if (response.tokens && response.tokens.length > 0) {
+          setTokenData(response.tokens[0]); // Assuming API returns a list of tokens
+        } else {
+          setTokenData(null);
+        }
+      } catch (err) {
+        setError(err.message || 'Failed to fetch token data');
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchCryptoData();
-  }, [token]);
+    if (tokenId) {
+      fetchData();
+    }
+  }, [tokenId]);
 
-  if (!cryptoData) return <p>Loading...</p>;
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p style={{ color: 'red' }}>Error: {error}</p>;
+  }
+
+  if (!tokenData) {
+    return <p>No token data available.</p>;
+  }
 
   return (
     <div>
-      <h1>{cryptoData.name}</h1>
-      <p>Symbol: {cryptoData.symbol}</p>
-      <p>Market Cap: {cryptoData.marketCap}</p>
-      <p>Price: ${cryptoData.price}</p>
-      {/* Add more details as needed */}
+      <h1>{tokenData.name}</h1>
+      <p>Symbol: {tokenData.symbol}</p>
+      <p>Decimals: {tokenData.decimals}</p>
+      {/* Add more details if available in the API response */}
     </div>
   );
 };

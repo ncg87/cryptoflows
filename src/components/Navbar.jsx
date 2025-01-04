@@ -13,6 +13,12 @@ const Navbar = () => (
         <Button component={Link} to="/volume" sx={{ color: 'var(--text-color)', fontWeight: 600 }}>
           Volume
         </Button>
+        <Button component={Link} to="/dexs" sx={{ color: 'var(--text-color)', fontWeight: 600 }}>
+          DEXs
+        </Button>
+        <Button component={Link} to="/tokens" sx={{ color: 'var(--text-color)', fontWeight: 600 }}>
+          Tokens
+        </Button>
       </Box>
       <ThemeToggle />
     </Toolbar>

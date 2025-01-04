@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, Typography } from "@mui/material";
 
-const GeneralList = ({
-    items,
-    headers,
-    pageSize = 10,
-    onTokenClick = null,
-}) => {
+const GeneralList = ({ items, headers, pageSize = 10, onTokenClick = null }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortField, setSortField] = useState(headers[1].key); // Default to the first header key
-  const [sortOrder, setSortOrder] = useState("desc"); // Default to descending
+  const [sortField, setSortField] = useState(headers[1].key); // Default to the second header key
+  const [sortOrder, setSortOrder] = useState("desc"); // Default to descending order
 
   const totalPages = Math.ceil(items.length / pageSize);
 
@@ -19,7 +14,7 @@ const GeneralList = ({
       setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
     } else {
       setSortField(key);
-      setSortOrder("desc"); // Default to descending when changing sort field
+      setSortOrder("desc"); // Reset to descending for new field
     }
   };
 
@@ -73,13 +68,14 @@ const GeneralList = ({
               key={header.key}
               style={{
                 flex: 1,
-                display: header.key === "token" ? "inline-block" : "block",
+                display: header.key === "displayName" ? "inline-block" : "block",
               }}
             >
-              {header.key === "token" ? (
+              {header.key === "displayName" ? (
                 <span
                   className="clickable-token"
-                  onClick={() => onTokenClick && onTokenClick(item[header.key])}
+                  style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+                  onClick={() => onTokenClick && onTokenClick(item)}
                 >
                   {item[header.key]}
                 </span>
@@ -122,8 +118,7 @@ GeneralList.propTypes = {
     })
   ).isRequired,
   pageSize: PropTypes.number,
-  onTokenClick: PropTypes.func, // Callback for token name click
+  onTokenClick: PropTypes.func, // Callback for token click
 };
-
 
 export default GeneralList;
