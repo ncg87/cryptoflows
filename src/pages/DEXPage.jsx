@@ -1,19 +1,20 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import BasePage from '../components/BasePage';
-import VolumeData from '../components/VolumeData';
+import TokenData from '../components/lists/TokenData';
+import { useParams } from "react-router-dom";
 
-const DEXPage = () => (
-  // Pass sx param to base page if there are specific styles needed
-  <BasePage>
-    <Typography variant="h4" gutterBottom>
-      Volume Page
-    </Typography>
-    <Typography variant="body1">
-      Displays the volume of transactions across various decentralized exchanges.
-    </Typography>
-    <VolumeData />
-  </BasePage>
-);
+const DEXPage = () => {
+  const { dexId } = useParams();
+  //console.log('DEXPage:', dexId);
+    return (
+      <BasePage>
+        <Typography variant="h4" gutterBottom>
+        DEX: {dexId} Volume
+      </Typography>
+      <TokenData dexId={dexId} />
+    </BasePage>
+  );
+};
 
 export default DEXPage;

@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import GeneralList from "./GeneralList";
-import { fetchVolume } from "../utils/apiClient";
+import { fetchDEXVolume } from "../../utils/apiClient";
 import { useNavigate } from "react-router-dom";
 
-const VolumeData = () => {
+const TokenData = ({ dexId = null }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const getVolumeData = async () => {
       try {
         const now = Math.floor(Date.now() / 1000);
         const oneDayAgo = now - 24 * 60 * 60;
-        const volumeData = await fetchVolume(oneDayAgo, now);
+        if (dexId) {
+          console.log("Fetching DEX volume data for dexId:", dexId);
+        }
+        const volumeData = await fetchDEXVolume(oneDayAgo, now, dexId);
         setData(
           volumeData.map((token) => ({
             id: token.id,
@@ -22,15 +25,16 @@ const VolumeData = () => {
           }))
         );
       } catch (error) {
-        console.error("Failed to fetch volume data", error);
+        console.error("Failed to fetch DEX volume data", error);
       } finally {
         setLoading(false);
       }
     };
     getVolumeData();
-  }, []);
+  }, [dexId]);
 
   const handleTokenClick = (tokenId) => {
+    //console.log('Clicked on token:', tokenId);
     navigate(`/tokens/${tokenId}`);
   };
 
@@ -49,4 +53,4 @@ const VolumeData = () => {
   );
 };
 
-export default VolumeData;
+export default TokenData;
